@@ -27,7 +27,7 @@ public class CategoryController {
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories", categories);
         model.addAttribute("size", categories.size());
-        model.addAttribute("title", "Categories");
+        model.addAttribute("title", "Categories manager");
         model.addAttribute("categoryNew", new Category());
         return "categories";
     }
