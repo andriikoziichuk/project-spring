@@ -3,6 +3,7 @@ package com.eproject.library.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 
@@ -14,6 +15,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private Long id;
+    @Length(max = 256, message = "Title too long(256)")
     private String name;
     private String description;
     private double costPrice;

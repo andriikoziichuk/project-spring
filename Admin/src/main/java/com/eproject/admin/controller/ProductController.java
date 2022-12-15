@@ -2,10 +2,10 @@ package com.eproject.admin.controller;
 
 import com.eproject.library.dto.ProductDTO;
 import com.eproject.library.model.Category;
-import com.eproject.library.model.Product;
 import com.eproject.library.service.CategoryService;
 import com.eproject.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +32,11 @@ public class ProductController {
         model.addAttribute("products", productDTOList);
         model.addAttribute("size", productDTOList.size());
         model.addAttribute("title", "Products manager");
+
+        Page<ProductDTO> products = productService.pageProducts(0);
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("currentPage", 0);
+
         return "products";
     }
 
@@ -95,7 +100,7 @@ public class ProductController {
     }
 
     @PostMapping("/update-product/{id}")
-    public String processUpdate(@PathVariable("id")Long id,
+    public String processUpdate(
                                 @ModelAttribute("productDto") ProductDTO productDTO,
                                 @RequestParam("imageProduct") MultipartFile imageProduct,
                                 RedirectAttributes redirectAttributes){
@@ -107,5 +112,37 @@ public class ProductController {
             redirectAttributes.addFlashAttribute("error", "Failed to update!");
         }
         return "redirect:/products";
+    }
+
+    @GetMapping("/products/{pageNo}")
+    public String productsPage(@PathVariable("pageNo") int pageNo, Model model, Principal principal){
+        if(principal == null){
+            return "redirect:/login";
+        }
+        Page<ProductDTO> products = productService.pageProducts(pageNo);
+        model.addAttribute("title", "Manage Product");
+        model.addAttribute("size", products.getSize());
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("products", products);
+        return "products";
+    }
+
+    @GetMapping("/search-result/{pageNo}")
+    public String searchProducts(@PathVariable("pageNo")int pageNo,
+                                 @RequestParam("keyword")String keyword,
+                                 Model model,
+                                 Principal principal) {
+
+        if (principal == null)
+            return "redirect:/login";
+        Page<ProductDTO> products = productService.searchProducts(pageNo, keyword);
+        model.addAttribute("products", products);
+        model.addAttribute("title", "Search result");
+        model.addAttribute("size", products.getSize());
+        model.addAttribute("totalPages", products.getTotalPages());
+        model.addAttribute("currentPage", pageNo);
+
+        return "result-products";
     }
 }

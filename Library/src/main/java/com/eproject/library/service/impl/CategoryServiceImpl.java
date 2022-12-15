@@ -1,9 +1,14 @@
 package com.eproject.library.service.impl;
 
+import com.eproject.library.dto.CategoryDTO;
 import com.eproject.library.model.Category;
+import com.eproject.library.model.Product;
 import com.eproject.library.repository.CategoryRepository;
 import com.eproject.library.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -63,5 +68,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<Category> findAllByActivated() {
         return categoryRepository.findAllByActivated();
+    }
+
+    @Override
+    public List<CategoryDTO> getCategoryAndProduct() {
+        return categoryRepository.getCategoryAndProduct();
     }
 }

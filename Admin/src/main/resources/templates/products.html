@@ -83,7 +83,7 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li th:if = "${currentPage != 0}" class="page-item">
-                            <a th:href="@{'/products/' + ${currentPage - 0}}" class="page-link" href="#">Previous</a>
+                            <a th:href="@{'/products/' + ${currentPage - 1}}" class="page-link" href="#">Previous</a>
                         </li>
                         <li th:each = "i : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage == i - 1 ? 'active' : ''}" class="page-item">
                             <a th:href="@{'/products/' + ${i - 1}}" class="page-link" href="#"><span th:text = "${i}"></span></a>
@@ -116,9 +116,14 @@
 
 <!-- Logout Modal-->
 
-<!-- Bootstrap core JavaScript-->
-<div th:replace="fragments :: script"></div>
-<script th:src="@{/js/categories.js}"></script>
+<div th:replace="fragments::script"></div>
+<!-- Page level plugins -->
+<script th:src="@{/vendor/chart.js/Chart.min.js}"></script>
+
+<!-- Page level custom scripts -->
+<script th:src="@{/js/demo/chart-area-demo.js}"></script>
+<script th:src="@{/js/demo/chart-pie-demo.js}"></script>
+
 
 </body>
 

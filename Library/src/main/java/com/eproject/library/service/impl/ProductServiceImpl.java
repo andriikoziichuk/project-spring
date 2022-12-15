@@ -6,6 +6,10 @@ import com.eproject.library.repository.ProductRepository;
 import com.eproject.library.service.ProductService;
 import com.eproject.library.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -128,4 +132,72 @@ public class ProductServiceImpl implements ProductService {
         }
         return productDtoList;
     }
+
+    @Override
+    public Page<ProductDTO> pageProducts(int pageNo) {
+        Pageable pageable = PageRequest.of(pageNo, 5);
+        List<ProductDTO> products = transfer(productRepository.findAll());
+        Page<ProductDTO> productPages = toPage(products, pageable);
+        return productPages;
+    }
+
+    @Override
+    public Page<ProductDTO> searchProducts(int pageNO, String keyword) {
+        Pageable pageable = PageRequest.of(pageNO,5);
+//        List<ProductDTO> productDTOList = transfer(productRepository.searchProductsList(keyword));
+        List<ProductDTO> productDTOList = transfer(productRepository.searchByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword));
+
+        Page<ProductDTO> products = toPage(productDTOList, pageable);
+
+        return products;
+    }
+
+    @Override
+    public Product getProductById(Long id) {
+        return productRepository.getReferenceById(id);
+    }
+
+    @Override
+    public List<Product> listViewProducts() {
+        return productRepository.listViewProducts();
+    }
+
+    @Override
+    public List<Product> getRelatedProducts(Long categoryId) {
+        return productRepository.getRelatedProducts(categoryId);
+    }
+
+    private Page toPage(List<ProductDTO> list , Pageable pageable){
+        if(pageable.getOffset() >= list.size()){
+            return Page.empty();
+        }
+        int startIndex = (int) pageable.getOffset();
+        int endIndex = ((pageable.getOffset() + pageable.getPageSize()) > list.size())
+                ? list.size()
+                : (int) (pageable.getOffset() + pageable.getPageSize());
+        List<ProductDTO> subList = list.subList(startIndex, endIndex);
+        return new PageImpl(subList, pageable, list.size());
+    }
+
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
+
+    @Override
+    public List<Product> getProductsInCategory(Long categoryId) {
+        return productRepository.getProductsInCategory(categoryId);
+    }
+
+    @Override
+    public List<Product> filterHighPrice() {
+        return productRepository.filterHighPrice();
+    }
+
+    @Override
+    public List<Product> filterLowPrice() {
+        return productRepository.filterLowPrice();
+    }
+
 }

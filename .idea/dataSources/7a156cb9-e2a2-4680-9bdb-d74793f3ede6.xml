@@ -1,7 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="project_spring@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.43">
-    <root id="1"/>
+    <root id="1">
+      <DefaultCasing>lower/lower</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <Grants>|root||root|localhost|ALTER|G
+|root||root|localhost|ALTER ROUTINE|G
+|root||root|localhost|APPLICATION_PASSWORD_ADMIN|G
+|root||mysql.infoschema|localhost|AUDIT_ABORT_EXEMPT|G
+|root||mysql.session|localhost|AUDIT_ABORT_EXEMPT|G
+|root||mysql.sys|localhost|AUDIT_ABORT_EXEMPT|G
+|root||root|localhost|AUDIT_ABORT_EXEMPT|G
+|root||root|localhost|AUDIT_ADMIN|G
+|root||root|localhost|AUTHENTICATION_POLICY_ADMIN|G
+|root||mysql.session|localhost|BACKUP_ADMIN|G
+|root||root|localhost|BACKUP_ADMIN|G
+|root||root|localhost|BINLOG_ADMIN|G
+|root||root|localhost|BINLOG_ENCRYPTION_ADMIN|G
+|root||mysql.session|localhost|CLONE_ADMIN|G
+|root||root|localhost|CLONE_ADMIN|G
+|root||mysql.session|localhost|CONNECTION_ADMIN|G
+|root||root|localhost|CONNECTION_ADMIN|G
+|root||root|localhost|CREATE|G
+|root||root|localhost|CREATE ROLE|G
+|root||root|localhost|CREATE ROUTINE|G
+|root||root|localhost|CREATE TABLESPACE|G
+|root||root|localhost|CREATE TEMPORARY TABLES|G
+|root||root|localhost|CREATE USER|G
+|root||root|localhost|CREATE VIEW|G
+|root||root|localhost|DELETE|G
+|root||root|localhost|DROP|G
+|root||root|localhost|DROP ROLE|G
+|root||root|localhost|ENCRYPTION_KEY_ADMIN|G
+|root||root|localhost|EVENT|G
+|root||root|localhost|EXECUTE|G
+|root||root|localhost|FILE|G
+|root||mysql.infoschema|localhost|FIREWALL_EXEMPT|G
+|root||mysql.session|localhost|FIREWALL_EXEMPT|G
+|root||mysql.sys|localhost|FIREWALL_EXEMPT|G
+|root||root|localhost|FIREWALL_EXEMPT|G
+|root||root|localhost|FLUSH_OPTIMIZER_COSTS|G
+|root||root|localhost|FLUSH_STATUS|G
+|root||root|localhost|FLUSH_TABLES|G
+|root||root|localhost|FLUSH_USER_RESOURCES|G
+|root||root|localhost|GROUP_REPLICATION_ADMIN|G
+|root||root|localhost|GROUP_REPLICATION_STREAM|G
+|root||root|localhost|INDEX|G
+|root||root|localhost|INNODB_REDO_LOG_ARCHIVE|G
+|root||root|localhost|INNODB_REDO_LOG_ENABLE|G
+|root||root|localhost|INSERT|G
+|root||root|localhost|LOCK TABLES|G
+|root||root|localhost|PASSWORDLESS_USER_ADMIN|G
+|root||mysql.session|localhost|PERSIST_RO_VARIABLES_ADMIN|G
+|root||root|localhost|PERSIST_RO_VARIABLES_ADMIN|G
+|root||root|localhost|PROCESS|G
+|root||root|localhost|REFERENCES|G
+|root||root|localhost|RELOAD|G
+|root||root|localhost|REPLICATION CLIENT|G
+|root||root|localhost|REPLICATION SLAVE|G
+|root||root|localhost|REPLICATION_APPLIER|G
+|root||root|localhost|REPLICATION_SLAVE_ADMIN|G
+|root||root|localhost|RESOURCE_GROUP_ADMIN|G
+|root||root|localhost|RESOURCE_GROUP_USER|G
+|root||root|localhost|ROLE_ADMIN|G
+|root||mysql.infoschema|localhost|SELECT|G
+|root||root|localhost|SELECT|G
+|root||root|localhost|SENSITIVE_VARIABLES_OBSERVER|G
+|root||root|localhost|SERVICE_CONNECTION_ADMIN|G
+|root||mysql.session|localhost|SESSION_VARIABLES_ADMIN|G
+|root||root|localhost|SESSION_VARIABLES_ADMIN|G
+|root||root|localhost|SET_USER_ID|G
+|root||root|localhost|SHOW DATABASES|G
+|root||root|localhost|SHOW VIEW|G
+|root||root|localhost|SHOW_ROUTINE|G
+|root||mysql.session|localhost|SHUTDOWN|G
+|root||root|localhost|SHUTDOWN|G
+|root||mysql.session|localhost|SUPER|G
+|root||root|localhost|SUPER|G
+|root||mysql.infoschema|localhost|SYSTEM_USER|G
+|root||mysql.session|localhost|SYSTEM_USER|G
+|root||mysql.sys|localhost|SYSTEM_USER|G
+|root||root|localhost|SYSTEM_USER|G
+|root||mysql.session|localhost|SYSTEM_VARIABLES_ADMIN|G
+|root||root|localhost|SYSTEM_VARIABLES_ADMIN|G
+|root||root|localhost|TABLE_ENCRYPTION_ADMIN|G
+|root||root|localhost|TRIGGER|G
+|root||root|localhost|UPDATE|G
+|root||root|localhost|XA_RECOVER_ADMIN|G
+|root||root|localhost|grant option|G
+performance_schema|schema||mysql.session|localhost|SELECT|G
+sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
+      <ServerVersion>8.0.30</ServerVersion>
+    </root>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
@@ -956,202 +1047,542 @@
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="303" parent="293" name="categories">
+    <table id="303" parent="293" name="cart_item">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="304" parent="293" name="products">
+    <table id="304" parent="293" name="categories">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <table id="305" parent="293" name="roles">
+    <table id="305" parent="293" name="cities">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </table>
-    <column id="306" parent="301" name="admin_id">
-      <AutoIncrement>4</AutoIncrement>
+    <table id="306" parent="293" name="customers">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="307" parent="293" name="customers_roles">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="308" parent="293" name="order_detail">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="309" parent="293" name="orders">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="310" parent="293" name="products">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="311" parent="293" name="roles">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="312" parent="293" name="shopping_cart">
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="313" parent="301" name="admin_id">
+      <AutoIncrement>7</AutoIncrement>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="307" parent="301" name="first_name">
+    <column id="314" parent="301" name="first_name">
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <column id="308" parent="301" name="image">
+    <column id="315" parent="301" name="image">
       <DataType>mediumblob|0s</DataType>
       <Position>3</Position>
     </column>
-    <column id="309" parent="301" name="last_name">
+    <column id="316" parent="301" name="last_name">
       <DataType>varchar(255)|0s</DataType>
       <Position>4</Position>
     </column>
-    <column id="310" parent="301" name="password">
+    <column id="317" parent="301" name="password">
       <DataType>varchar(255)|0s</DataType>
       <Position>5</Position>
     </column>
-    <column id="311" parent="301" name="username">
+    <column id="318" parent="301" name="username">
       <DataType>varchar(255)|0s</DataType>
       <Position>6</Position>
     </column>
-    <index id="312" parent="301" name="PRIMARY">
+    <index id="319" parent="301" name="PRIMARY">
       <ColNames>admin_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="313" parent="301" name="PRIMARY">
+    <key id="320" parent="301" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="314" parent="302" name="admin_id">
+    <column id="321" parent="302" name="admin_id">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="315" parent="302" name="role_id">
+    <column id="322" parent="302" name="role_id">
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <foreign-key id="316" parent="302" name="FK8535wewsp17vgt2scahieovxu">
+    <foreign-key id="323" parent="302" name="FK8535wewsp17vgt2scahieovxu">
       <ColNames>admin_id</ColNames>
       <RefColNames>admin_id</RefColNames>
       <RefTableName>admins</RefTableName>
     </foreign-key>
-    <foreign-key id="317" parent="302" name="FK6ioy9osuscmkmt3b0c32c5w9y">
+    <foreign-key id="324" parent="302" name="FK6ioy9osuscmkmt3b0c32c5w9y">
       <ColNames>role_id</ColNames>
       <RefColNames>role_id</RefColNames>
       <RefTableName>roles</RefTableName>
     </foreign-key>
-    <index id="318" parent="302" name="FK8535wewsp17vgt2scahieovxu">
+    <index id="325" parent="302" name="FK8535wewsp17vgt2scahieovxu">
       <ColNames>admin_id</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="319" parent="302" name="FK6ioy9osuscmkmt3b0c32c5w9y">
+    <index id="326" parent="302" name="FK6ioy9osuscmkmt3b0c32c5w9y">
       <ColNames>role_id</ColNames>
       <Type>btree</Type>
     </index>
-    <column id="320" parent="303" name="category_id">
+    <column id="327" parent="303" name="order_detail_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="328" parent="303" name="quantity">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="329" parent="303" name="total_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="330" parent="303" name="shopping_cart_id">
+      <DataType>bigint|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="331" parent="303" name="product_id">
+      <DataType>bigint|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <foreign-key id="332" parent="303" name="FKe89gjdx91fxnmkkssyoim8xfu">
+      <ColNames>shopping_cart_id</ColNames>
+      <RefColNames>shopping_cart_id</RefColNames>
+      <RefTableName>shopping_cart</RefTableName>
+    </foreign-key>
+    <foreign-key id="333" parent="303" name="FKqkqmvkmbtiaqn2nfqf25ymfs2">
+      <ColNames>product_id</ColNames>
+      <RefColNames>product_id</RefColNames>
+      <RefTableName>products</RefTableName>
+    </foreign-key>
+    <index id="334" parent="303" name="PRIMARY">
+      <ColNames>order_detail_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="335" parent="303" name="FKe89gjdx91fxnmkkssyoim8xfu">
+      <ColNames>shopping_cart_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="336" parent="303" name="FKqkqmvkmbtiaqn2nfqf25ymfs2">
+      <ColNames>product_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="337" parent="303" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="338" parent="304" name="category_id">
+      <AutoIncrement>15</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="339" parent="304" name="is_activated">
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="340" parent="304" name="is_deleted">
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="341" parent="304" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <index id="342" parent="304" name="PRIMARY">
+      <ColNames>category_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="343" parent="304" name="UKt8o6pivur7nn124jehx7cygw5">
+      <ColNames>name</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="344" parent="304" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="345" parent="304" name="UKt8o6pivur7nn124jehx7cygw5">
+      <UnderlyingIndexName>UKt8o6pivur7nn124jehx7cygw5</UnderlyingIndexName>
+    </key>
+    <column id="346" parent="305" name="city_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="347" parent="305" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <index id="348" parent="305" name="PRIMARY">
+      <ColNames>city_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="349" parent="305" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="350" parent="306" name="customer_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="351" parent="306" name="address">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="352" parent="306" name="country">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="353" parent="306" name="first_name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="354" parent="306" name="image">
+      <DataType>mediumblob|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="355" parent="306" name="last_name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>6</Position>
+    </column>
+    <column id="356" parent="306" name="password">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>7</Position>
+    </column>
+    <column id="357" parent="306" name="phone_number">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>8</Position>
+    </column>
+    <column id="358" parent="306" name="username">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>9</Position>
+    </column>
+    <column id="359" parent="306" name="city_id">
+      <DataType>bigint|0s</DataType>
+      <Position>10</Position>
+    </column>
+    <foreign-key id="360" parent="306" name="FKcnjv7us3tih8hj2fonxov8gxw">
+      <ColNames>city_id</ColNames>
+      <RefColNames>city_id</RefColNames>
+      <RefTableName>cities</RefTableName>
+    </foreign-key>
+    <index id="361" parent="306" name="PRIMARY">
+      <ColNames>customer_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="362" parent="306" name="FKcnjv7us3tih8hj2fonxov8gxw">
+      <ColNames>city_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="363" parent="306" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="364" parent="307" name="customer_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="365" parent="307" name="role_id">
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <foreign-key id="366" parent="307" name="FKmn5q3x2wakfnrby09kb5n2bxs">
+      <ColNames>customer_id</ColNames>
+      <RefColNames>customer_id</RefColNames>
+      <RefTableName>customers</RefTableName>
+    </foreign-key>
+    <foreign-key id="367" parent="307" name="FKc43ultbfo55uyy6ljpi8x87mf">
+      <ColNames>role_id</ColNames>
+      <RefColNames>role_id</RefColNames>
+      <RefTableName>roles</RefTableName>
+    </foreign-key>
+    <index id="368" parent="307" name="FKmn5q3x2wakfnrby09kb5n2bxs">
+      <ColNames>customer_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="369" parent="307" name="FKc43ultbfo55uyy6ljpi8x87mf">
+      <ColNames>role_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <column id="370" parent="308" name="order_detail_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="371" parent="308" name="quantity">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="372" parent="308" name="total_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="373" parent="308" name="unit_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+    </column>
+    <column id="374" parent="308" name="order_id">
+      <DataType>bigint|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="375" parent="308" name="product_id">
+      <DataType>bigint|0s</DataType>
+      <Position>6</Position>
+    </column>
+    <foreign-key id="376" parent="308" name="FKrws2q0si6oyd6il8gqe2aennc">
+      <ColNames>order_id</ColNames>
+      <RefColNames>order_id</RefColNames>
+      <RefTableName>orders</RefTableName>
+    </foreign-key>
+    <foreign-key id="377" parent="308" name="FKc7q42e9tu0hslx6w4wxgomhvn">
+      <ColNames>product_id</ColNames>
+      <RefColNames>product_id</RefColNames>
+      <RefTableName>products</RefTableName>
+    </foreign-key>
+    <index id="378" parent="308" name="PRIMARY">
+      <ColNames>order_detail_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="379" parent="308" name="FKrws2q0si6oyd6il8gqe2aennc">
+      <ColNames>order_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="380" parent="308" name="FKc7q42e9tu0hslx6w4wxgomhvn">
+      <ColNames>product_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="381" parent="308" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="382" parent="309" name="order_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="383" parent="309" name="delivery_date">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>2</Position>
+    </column>
+    <column id="384" parent="309" name="notes">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>3</Position>
+    </column>
+    <column id="385" parent="309" name="order_date">
+      <DataType>datetime(6)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="386" parent="309" name="order_status">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="387" parent="309" name="shipping_fee">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="388" parent="309" name="total_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="389" parent="309" name="customer_id">
+      <DataType>bigint|0s</DataType>
+      <Position>8</Position>
+    </column>
+    <foreign-key id="390" parent="309" name="FKpxtb8awmi0dk6smoh2vp1litg">
+      <ColNames>customer_id</ColNames>
+      <RefColNames>customer_id</RefColNames>
+      <RefTableName>customers</RefTableName>
+    </foreign-key>
+    <index id="391" parent="309" name="PRIMARY">
+      <ColNames>order_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="392" parent="309" name="FKpxtb8awmi0dk6smoh2vp1litg">
+      <ColNames>customer_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="393" parent="309" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="394" parent="310" name="product_id">
+      <AutoIncrement>7</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="395" parent="310" name="cost_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="396" parent="310" name="current_quantity">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="397" parent="310" name="description">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <column id="398" parent="310" name="image">
+      <DataType>mediumblob|0s</DataType>
+      <Position>5</Position>
+    </column>
+    <column id="399" parent="310" name="is_activated">
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+    </column>
+    <column id="400" parent="310" name="is_deleted">
+      <DataType>bit(1)|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+    </column>
+    <column id="401" parent="310" name="name">
+      <DataType>varchar(255)|0s</DataType>
+      <Position>8</Position>
+    </column>
+    <column id="402" parent="310" name="sale_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+    </column>
+    <column id="403" parent="310" name="category_id">
+      <DataType>bigint|0s</DataType>
+      <Position>10</Position>
+    </column>
+    <foreign-key id="404" parent="310" name="FKog2rp4qthbtt2lfyhfo32lsw9">
+      <ColNames>category_id</ColNames>
+      <RefColNames>category_id</RefColNames>
+      <RefTableName>categories</RefTableName>
+    </foreign-key>
+    <index id="405" parent="310" name="PRIMARY">
+      <ColNames>product_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="406" parent="310" name="FKog2rp4qthbtt2lfyhfo32lsw9">
+      <ColNames>category_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="407" parent="310" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="408" parent="311" name="role_id">
       <AutoIncrement>3</AutoIncrement>
       <DataType>bigint|0s</DataType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="321" parent="303" name="is_activated">
-      <DataType>bit(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="322" parent="303" name="is_deleted">
-      <DataType>bit(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="323" parent="303" name="name">
-      <DataType>varchar(255)|0s</DataType>
-      <Position>4</Position>
-    </column>
-    <index id="324" parent="303" name="PRIMARY">
-      <ColNames>category_id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="325" parent="303" name="UKt8o6pivur7nn124jehx7cygw5">
-      <ColNames>name</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="326" parent="303" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <key id="327" parent="303" name="UKt8o6pivur7nn124jehx7cygw5">
-      <UnderlyingIndexName>UKt8o6pivur7nn124jehx7cygw5</UnderlyingIndexName>
-    </key>
-    <column id="328" parent="304" name="product_id">
-      <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="329" parent="304" name="cost_price">
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>2</Position>
-    </column>
-    <column id="330" parent="304" name="current_quantity">
-      <DataType>int|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>3</Position>
-    </column>
-    <column id="331" parent="304" name="description">
-      <DataType>varchar(255)|0s</DataType>
-      <Position>4</Position>
-    </column>
-    <column id="332" parent="304" name="image">
-      <DataType>mediumblob|0s</DataType>
-      <Position>5</Position>
-    </column>
-    <column id="333" parent="304" name="is_activated">
-      <DataType>bit(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>6</Position>
-    </column>
-    <column id="334" parent="304" name="is_deleted">
-      <DataType>bit(1)|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>7</Position>
-    </column>
-    <column id="335" parent="304" name="name">
-      <DataType>varchar(255)|0s</DataType>
-      <Position>8</Position>
-    </column>
-    <column id="336" parent="304" name="sale_price">
-      <DataType>double|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>9</Position>
-    </column>
-    <column id="337" parent="304" name="category_id">
-      <DataType>bigint|0s</DataType>
-      <Position>10</Position>
-    </column>
-    <foreign-key id="338" parent="304" name="FKog2rp4qthbtt2lfyhfo32lsw9">
-      <ColNames>category_id</ColNames>
-      <RefColNames>category_id</RefColNames>
-      <RefTableName>categories</RefTableName>
-    </foreign-key>
-    <index id="339" parent="304" name="PRIMARY">
-      <ColNames>product_id</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <index id="340" parent="304" name="FKog2rp4qthbtt2lfyhfo32lsw9">
-      <ColNames>category_id</ColNames>
-      <Type>btree</Type>
-    </index>
-    <key id="341" parent="304" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="342" parent="305" name="role_id">
-      <AutoIncrement>1</AutoIncrement>
-      <DataType>bigint|0s</DataType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="343" parent="305" name="name">
+    <column id="409" parent="311" name="name">
       <DataType>varchar(255)|0s</DataType>
       <Position>2</Position>
     </column>
-    <index id="344" parent="305" name="PRIMARY">
+    <index id="410" parent="311" name="PRIMARY">
       <ColNames>role_id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="345" parent="305" name="PRIMARY">
+    <key id="411" parent="311" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="412" parent="312" name="shopping_cart_id">
+      <AutoIncrement>1</AutoIncrement>
+      <DataType>bigint|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+    </column>
+    <column id="413" parent="312" name="total_items">
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+    </column>
+    <column id="414" parent="312" name="total_price">
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+    </column>
+    <column id="415" parent="312" name="customer_id">
+      <DataType>bigint|0s</DataType>
+      <Position>4</Position>
+    </column>
+    <foreign-key id="416" parent="312" name="FK64hllmf43h6bixdqdyjfyl66c">
+      <ColNames>customer_id</ColNames>
+      <RefColNames>customer_id</RefColNames>
+      <RefTableName>customers</RefTableName>
+    </foreign-key>
+    <index id="417" parent="312" name="PRIMARY">
+      <ColNames>shopping_cart_id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="418" parent="312" name="FK64hllmf43h6bixdqdyjfyl66c">
+      <ColNames>customer_id</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="419" parent="312" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>

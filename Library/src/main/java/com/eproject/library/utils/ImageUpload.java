@@ -15,14 +15,18 @@ public class ImageUpload {
     public boolean uploadImage(MultipartFile imageProduct) {
 
         boolean isUpload = false;
-        try {
-            Files.copy(imageProduct.getInputStream(),
-                    Paths.get(UPLOAD_FOLDER + File.separator, imageProduct.getOriginalFilename()),
-                    StandardCopyOption.REPLACE_EXISTING);
-            isUpload = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        if (imageProduct != null) {
+            try {
+                Files.copy(imageProduct.getInputStream(),
+                        Paths.get(UPLOAD_FOLDER + File.separator, imageProduct.getOriginalFilename()),
+                        StandardCopyOption.REPLACE_EXISTING);
+                isUpload = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else
+            System.out.println("Photo not selected");
+
         return isUpload;
     }
 
