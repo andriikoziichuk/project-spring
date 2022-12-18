@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Freshshop - Ecommerce Bootstrap 4 HTML Template</title>
+    <title>Вхід</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -50,30 +50,30 @@
         <div class="form">
             <h2>Log In</h2>
             <div th:if = "${param.error}" class="text-center alert alert-warning">
-                <p>Invalid username or password</p>
+                <p>Неправильний пароль чи логін</p>
             </div>
 
             <div th:if = "${param.logout}" class="text-center alert alert-success">
-                <p>You have been logged out</p>
+                <p>Ви вийшли</p>
             </div>
 
             <form th:action="@{/do-login}" method="post">
                 <div class="input-form">
                     <!-- <span>User name</span> -->
-                    <input type="text" placeholder="Name" name="username">
+                    <input type="text" placeholder="Ім'я" name="username">
                 </div>
                 <div class="input-form">
                     <!-- <span>Password</span> -->
-                    <input type="password" placeholder="Password" name="password">
+                    <input type="password" placeholder="Пароль" name="password">
                 </div>
                 <div class="input-form">
-                    <input type="submit" value="Log In">
+                    <input type="submit" value="Увійти">
                 </div>
                 <div class="input-form">
-                    <p>Do You Already Have An Account ? <a th:href="@{/register}">Sign up now </a></p>
+                    <p>Ще не зареєстровані ? <a th:href="@{/register}">Зареєструйтесь зараз </a></p>
                 </div>
             </form>
-            <h3>Log In With Social Network</h3>
+            <h3>Зайти за допомоги соц. мереж</h3>
             <ul class="icon-dang-nhap">
                 <li><i class="fab fa-facebook-f"></i></i></li>
                 <li><i class="fab fa-google"></i></li>

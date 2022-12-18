@@ -35,28 +35,34 @@
             <div class="col-sm-6 col-lg-6 mb-3">
                 <div class="checkout-address">
                     <div class="title-left">
-                        <h3>Billing address</h3>
+                        <h3>Адреса доствка</h3>
                     </div>
                     <div class="mb-3">
-                        <label for="username">Username *</label>
+                        <label for="username">Емейл *</label>
                         <p th:text="${customer.username}" id="username">
                     </div>
                     <div class="mb-3">
-                        <label for="phone">Phone Number *</label>
+                        <label for="phone">Номер телефону *</label>
                         <p id="phone" th:text="${customer.phoneNumber}">
                     </div>
                     <div class="mb-3">
-                        <label for="address">Address *</label>
+                        <label for="address">Адреса *</label>
                         <p th:text="${customer.address + ' ' + customer.city + ' ' + customer.country}" id="address">
                     </div>
                     <hr class="mb-4">
                     <hr class="mb-4">
-                    <div class="title"><span>Payment Methods</span></div>
+                    <div class="title"><span>Метод оплати</span></div>
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
                             <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
                                    required>
-                            <label class="custom-control-label" for="debit">Cash</label>
+                            <label class="custom-control-label" for="debit">Готівка</label>
+
+                        </div>
+                        <div class="custom-control custom-radio">
+                        <input id="card" name="paymentMethod" type="radio" class="custom-control-input"
+                               required>
+                        <label class="custom-control-label" for="card">Картою</label>
                         </div>
                     </div>
                     <hr class="mb-1">
@@ -66,15 +72,15 @@
                 <div class="col-md-12 col-lg-12">
                     <div class="odr-box">
                         <div class="title-left">
-                            <h3>Shopping cart</h3>
+                            <h3>Кошик</h3>
                         </div>
                         <div class="rounded p-2 bg-light">
                             <div class="media mb-2 border-bottom" th:each="item : ${cart.cartItem}">
-                                <div class="media-body"><a href="product-detail.html"
+                                <div class="media-body"><a th:href="'/shop/find-product/' + ${item.product.id}"
                                                            th:text="${item.product.name}"> </a>
-                                    <div class="small text-muted">Price: $[[${item.product.costPrice}]] <span
-                                            class="mx-2">|</span> Qty: [[${item.quantity}]] <span
-                                            class="mx-2">|</span> Subtotal: $[[${cart.totalPrices}]]
+                                    <div class="small text-muted">Ціна: $[[${item.product.costPrice}]] <span
+                                            class="mx-2">|</span> К-ть: [[${item.quantity}]] <span
+                                            class="mx-2">|</span> Сума: $[[${cart.totalPrice}]]
                                     </div>
                                 </div>
                             </div>
@@ -84,39 +90,41 @@
                 <div class="col-md-12 col-lg-12">
                     <div class="order-box">
                         <div class="title-left">
-                            <h2><b>Your order</b></h2>
+                            <h2><b>Ваше замовлення</b></h2>
                         </div>
                         <div class="d-flex">
-                            <div class="font-weight-bold">Product</div>
-                            <div class="ml-auto font-weight-bold">Total</div>
+                            <div class="font-weight-bold">Книга</div>
+                            <div class="ml-auto font-weight-bold">Всього</div>
                         </div>
                         <hr class="my-1">
                         <div class="d-flex">
-                            <h4>Sub Total</h4>
-                            <div class="ml-auto font-weight-bold" th:text="${ '$' + cart.totalPrices}"></div>
+                            <h4>Ціна кошику</h4>
+                            <div class="ml-auto font-weight-bold" th:text="${ '$' + cart.totalPrice}"></div>
                         </div>
                         <div class="d-flex">
-                            <h4>Discount</h4>
+                            <h4>Знижка</h4>
                             <div class="ml-auto font-weight-bold"> $0</div>
                         </div>
                         <hr class="my-1">
                         <div class="d-flex">
-                            <h4>Tax</h4>
+                            <h4>Податок</h4>
                             <div class="ml-auto font-weight-bold"> $2</div>
                         </div>
                         <div class="d-flex">
-                            <h4>Shipping Cost</h4>
-                            <div class="ml-auto font-weight-bold"> Free</div>
+                            <h4>Ціна доставки</h4>
+                            <div class="ml-auto font-weight-bold">Безкоштовно</div>
                         </div>
                         <hr>
                         <div class="d-flex gr-total">
-                            <h5>Grand Total</h5>
-                            <div class="ml-auto h5" th:text=" '$' + ${cart.totalPrices + 2}"></div>
+                            <h5>Всього</h5>
+                            <div class="ml-auto h5" th:text=" '$' + ${cart.totalPrice + 2}"></div>
                         </div>
                         <hr>
                     </div>
                 </div>
-                <div class="col-12 d-flex shopping-box"><a th:href="@{/order}" class="ml-auto btn hvr-hover">Place Order</a></div>
+                <form class="col-12 d-flex shopping-box" th:action="@{/save-order}" method="put">
+                    <input class="ml-auto btn hvr-hover" type="submit" th:href="@{/order}" value="Замовити">
+                </form>
             </div>
         </div>
     </div>
@@ -124,13 +132,6 @@
 </div>
 </div>
 <!-- End Cart -->
-
-<!-- Start Feed  -->
-<div th:replace="fragments::instagram-box">
-</div>
-
-<!-- End Feed  -->
-
 
 <!-- Start Footer  -->
 <footer th:replace="fragments::footer">

@@ -6,6 +6,8 @@ import com.eproject.library.service.CategoryService;
 import com.eproject.library.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -115,22 +118,52 @@ public class ProductController {
     }
 
     @GetMapping("/products/{pageNo}")
-    public String productsPage(@PathVariable("pageNo") int pageNo, Model model, Principal principal){
+    public String productsPage(@RequestParam(defaultValue = "id,desc") String[] sort,
+                               @PathVariable("pageNo") int pageNo,
+                               Model model,
+                               Principal principal){
         if(principal == null){
             return "redirect:/login";
         }
-        Page<ProductDTO> products = productService.pageProducts(pageNo);
+
+        List<Order> orders = new ArrayList<>();
+        if (sort[0].contains(",")) {
+            // will sort more than 2 columns
+            for (String sortOrder : sort) {
+                // sortOrder="column, direction"
+                String[] _sort = sortOrder.split(",");
+                orders.add(new Order(getSortDirection(_sort[1]), _sort[0]));
+            }
+        } else {
+            // sort=[column, direction]
+            orders.add(new Order(getSortDirection(sort[1]), sort[0]));
+        }
+
+        Page<ProductDTO> products = productService.findAll(Sort.by(orders), pageNo);
+
+//        Page<ProductDTO> products = productService.pageProducts(pageNo);
         model.addAttribute("title", "Manage Product");
         model.addAttribute("size", products.getSize());
         model.addAttribute("totalPages", products.getTotalPages());
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("products", products);
+
         return "products";
     }
 
+    private Sort.Direction getSortDirection(String direction) {
+        if (direction.equals("asc")) {
+            return Sort.Direction.ASC;
+        } else if (direction.equals("desc")) {
+            return Sort.Direction.DESC;
+        }
+
+        return Sort.Direction.ASC;
+    }
+
     @GetMapping("/search-result/{pageNo}")
-    public String searchProducts(@PathVariable("pageNo")int pageNo,
-                                 @RequestParam("keyword")String keyword,
+    public String searchProducts(@PathVariable("pageNo") int pageNo,
+                                 @RequestParam("keyword") String keyword,
                                  Model model,
                                  Principal principal) {
 

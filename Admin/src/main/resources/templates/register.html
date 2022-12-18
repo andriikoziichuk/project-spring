@@ -16,7 +16,7 @@
                 <div class="col-lg-7">
                     <div class="p-5">
                         <div class="text-center">
-                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                            <h1 class="h4 text-gray-900 mb-4">Зареєструватись!</h1>
                         </div>
                         <div th:if = "${emailError}">
                             <p class = "alert alert-danger" th:text = "${emailError}"></p>
@@ -34,14 +34,14 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="text" class="form-control form-control-user" th:field="*{firstName}" id="exampleFirstName"
-                                           placeholder="First Name">
+                                           placeholder="Ім'я">
                                     <div class="mt-2 alert alert-danger" th:if="${#fields.hasErrors('firstName')}"
                                          th:errors = "*{firstName}"
                                     ></div>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control form-control-user" th:field="*{lastName}" id="exampleLastName"
-                                           placeholder="Last Name">
+                                           placeholder="Фамілія">
                                     <div class="mt-2 alert alert-danger" th:if = "${#fields.hasErrors('lastName')}"
                                          th:errors = "*{lastName}"
                                     ></div>
@@ -49,33 +49,32 @@
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control form-control-user" th:field="*{username}" id="exampleInputEmail"
-                                       placeholder="Email Username">
+                                       placeholder="Email">
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user" th:field="*{password}"
-                                           id="exampleInputPassword" placeholder="Password">
+                                           id="exampleInputPassword" placeholder="Пароль">
 
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user" th:field="*{repeatPassword}"
-                                           id="exampleRepeatPassword" placeholder="Repeat Password">
+                                           id="exampleRepeatPassword" placeholder="Повторіть пароль">
                                 </div>
                                 <div class="mt-2 mb-0 w-100 text-center alert alert-danger" th:if = "${#fields.hasErrors('password')}"
                                      th:errors = "*{password}"
                                 ></div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
-                                Register account
+                                Зареєструватись
                             </button>
                         </form>
                         <hr>
                         <div class="text-center">
-                            <a class="small" th:href="@{forgot-password}" href="forgot-password.html">Forgot
-                                Password?</a>
+                            <a class="small" th:href="@{forgot-password}" href="forgot-password.html">Забули пароль?</a>
                         </div>
                         <div class="text-center">
-                            <a class="small" th:href="@{login}" href="login.html">Already have an account? Login!</a>
+                            <a class="small" th:href="@{login}" href="login.html">Вже маєте акаунт? Увійти!</a>
                         </div>
                     </div>
                 </div>

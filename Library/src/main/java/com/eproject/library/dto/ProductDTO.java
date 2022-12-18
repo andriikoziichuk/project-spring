@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data @NoArgsConstructor @AllArgsConstructor
-
 public class ProductDTO {
     private Long id;
     private String name;
@@ -18,4 +17,5 @@ public class ProductDTO {
     private String image;
     private boolean activated;
     private boolean deleted;
+
 }

@@ -20,6 +20,7 @@ public class Customer {
     private String lastName;
     private String username;
     private String country;
+
     @Column(name = "phone_number")
     private String phoneNumber;
     private String address;
@@ -29,9 +30,8 @@ public class Customer {
     @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private String image;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-    private City city;
+    @Column(name = "city")
+    private String city;
 
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;

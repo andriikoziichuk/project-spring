@@ -11,12 +11,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class LoginController {
@@ -31,8 +30,24 @@ public class LoginController {
         return "login";
     }
 
-    @RequestMapping("/index")
-    public String home(Model model) {
+//    @RequestMapping("/index")
+//    public String home(Model model) {
+//        model.addAttribute("title", "Home");
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if(authentication == null || authentication instanceof  AnonymousAuthenticationToken)
+//            return "redirect:/login";
+//
+//        return "index";
+//    }
+
+    @RequestMapping(value = {"/index", "/"}, method = RequestMethod.GET)
+    public String home(Model model,
+                       Principal principal,
+                       HttpSession httpSession) {
+        if (principal != null) {
+            httpSession.setAttribute("username", principal.getName());
+        }
+
         model.addAttribute("title", "Home");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication == null || authentication instanceof  AnonymousAuthenticationToken)

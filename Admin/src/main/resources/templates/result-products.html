@@ -25,7 +25,7 @@
             <div class="container-fluid">
                 <!-- Page Heading -->
                 <div th:if = "${size == 0}">
-                    <p>No products in shop</p>
+                    <p>Немає книг по даному пошуковому запиту</p>
                 </div>
                 <div th:if = "${success}" class="text-center alert alert-success">
                     <p th:text = "${success}"></p>
@@ -33,17 +33,17 @@
                 <div th:if = "${error}" class="text-center alert alert-danger">
                     <p th:text = "${error}"></p>
                 </div>
-                <a class="btn btn-primary" th:href = "@{/add-product}">Add new product</a>
+                <a class="btn btn-primary" th:href = "@{/add-product}">Додати нову книгу</a>
                 <table class="table table-striped" th:if = "${size > 0}">
                     <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Update</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Назва</th>
+                        <th scope="col">Категорія</th>
+                        <th scope="col">Ціна</th>
+                        <th scope="col">Кількість</th>
+                        <th scope="col">Фото</th>
+                        <th scope="col">Оновити</th>
+                        <th scope="col">Дії</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -65,13 +65,13 @@
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
                         <li th:if = "${currentPage != 0}" class="page-item">
-                            <a th:href="@{'/products/' + ${currentPage - 1}}" class="page-link" href="#">Previous</a>
+                            <a th:href="@{'/products/' + ${currentPage - 1}}" class="page-link" href="#">Попердяня</a>
                         </li>
                         <li th:each = "i : ${#numbers.sequence(1, totalPages)}" th:classappend="${currentPage == i - 1 ? 'active' : ''}" class="page-item">
                             <a th:href="@{'/products/' + ${i - 1}}" class="page-link" href="#"><span th:text = "${i}"></span></a>
                         </li>
                         <li th:if = "${currentPage + 1 != totalPages}" class="page-item">
-                            <a th:href="@{'/products/' + ${currentPage + 1}}" class="page-link" href="#">Next</a>
+                            <a th:href="@{'/products/' + ${currentPage + 1}}" class="page-link" href="#">Наступна</a>
                         </li>
                     </ul>
                 </nav>

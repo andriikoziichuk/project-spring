@@ -6,10 +6,7 @@ import com.eproject.library.repository.ProductRepository;
 import com.eproject.library.service.ProductService;
 import com.eproject.library.utils.ImageUpload;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,8 +25,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> findAll() {
         List<Product> products = productRepository.findAll();
-        List<ProductDTO> productDtoList = transfer(products);
-        return productDtoList;
+        return transfer(products);
+    }
+
+    @Override
+    public List<ProductDTO> findAll(String[] sort) {
+
+        return transfer(productRepository.findAll(Sort.by(getOrders(sort))));
+    }
+
+    @Override
+    public Page<ProductDTO> findAll(String[] sort, int pageNo) {
+        Pageable pageable = PageRequest.of(pageNo, 5);
+        List<ProductDTO> products = transfer(productRepository.findAll(Sort.by(getOrders(sort))));
+        return toPage(products, pageable);
     }
 
     @Override
@@ -63,7 +72,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product update(MultipartFile imageProduct, ProductDTO productDTO) {
         try {
-            Product product = productRepository.getById(productDTO.getId());
+            Product product = productRepository.getReferenceById(productDTO.getId());
             if (imageProduct == null)
                 product.setImage(product.getImage());
             else {
@@ -103,7 +112,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO getById(Long id) {
-        Product product = productRepository.getById(id);
+        Product product = productRepository.getReferenceById(id);
 
         return getProductDTO(product);
     }
@@ -137,19 +146,22 @@ public class ProductServiceImpl implements ProductService {
     public Page<ProductDTO> pageProducts(int pageNo) {
         Pageable pageable = PageRequest.of(pageNo, 5);
         List<ProductDTO> products = transfer(productRepository.findAll());
-        Page<ProductDTO> productPages = toPage(products, pageable);
-        return productPages;
+        return toPage(products, pageable);
     }
 
     @Override
     public Page<ProductDTO> searchProducts(int pageNO, String keyword) {
         Pageable pageable = PageRequest.of(pageNO,5);
-//        List<ProductDTO> productDTOList = transfer(productRepository.searchProductsList(keyword));
+
         List<ProductDTO> productDTOList = transfer(productRepository.searchByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword));
 
-        Page<ProductDTO> products = toPage(productDTOList, pageable);
+        return toPage(productDTOList, pageable);
+    }
 
-        return products;
+    @Override
+    public List<ProductDTO> searchProducts(String keyword, String[] sort) {
+
+        return transfer(productRepository.searchByNameContainingIgnoreCaseOrDescriptionContainingIgnoreCase(keyword, keyword, Sort.by(getOrders(sort))));
     }
 
     @Override
@@ -167,7 +179,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.getRelatedProducts(categoryId);
     }
 
-    private Page toPage(List<ProductDTO> list , Pageable pageable){
+    public static <T> Page<T> toPage(List<T> list , Pageable pageable){
         if(pageable.getOffset() >= list.size()){
             return Page.empty();
         }
@@ -175,29 +187,38 @@ public class ProductServiceImpl implements ProductService {
         int endIndex = ((pageable.getOffset() + pageable.getPageSize()) > list.size())
                 ? list.size()
                 : (int) (pageable.getOffset() + pageable.getPageSize());
-        List<ProductDTO> subList = list.subList(startIndex, endIndex);
-        return new PageImpl(subList, pageable, list.size());
-    }
-
-
-    @Override
-    public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+        List<T> subList = list.subList(startIndex, endIndex);
+        return new PageImpl<>(subList, pageable, list.size());
     }
 
     @Override
-    public List<Product> getProductsInCategory(Long categoryId) {
-        return productRepository.getProductsInCategory(categoryId);
+    public List<Product> getProductsInCategory(Long categoryId, String[] sort) {
+        return productRepository.getProductsInCategory(categoryId, Sort.by(getOrders(sort)));
     }
 
-    @Override
-    public List<Product> filterHighPrice() {
-        return productRepository.filterHighPrice();
+    private List<Sort.Order> getOrders(String[] sort) {
+        List<Sort.Order> orders = new ArrayList<>();
+        if (sort[0].contains(",")) {
+            // will sort more than 2 columns
+            for (String sortOrder : sort) {
+                // sortOrder="column, direction"
+                String[] _sort = sortOrder.split(",");
+                orders.add(new Sort.Order(getSortDirection(_sort[1]), _sort[0]));
+            }
+        } else {
+            // sort=[column, direction]
+            orders.add(new Sort.Order(getSortDirection(sort[1]), sort[0]));
+        }
+        return orders;
     }
 
-    @Override
-    public List<Product> filterLowPrice() {
-        return productRepository.filterLowPrice();
-    }
+    private Sort.Direction getSortDirection(String direction) {
+        if (direction.equals("asc")) {
+            return Sort.Direction.ASC;
+        } else if (direction.equals("desc")) {
+            return Sort.Direction.DESC;
+        }
 
+        return Sort.Direction.ASC;
+    }
 }

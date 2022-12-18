@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -36,8 +35,7 @@ public class AuthController {
     @PostMapping("/do-register")
     public String processRegister(@Valid @ModelAttribute("customerDTO") CustomerDTO customerDTO,
                                   BindingResult bindingResult,
-                                  Model model,
-                                  RedirectAttributes attributes) {
+                                  Model model) {
         try {
             if (bindingResult.hasErrors()) {
                 model.addAttribute("customerDTO", customerDTO);
@@ -51,14 +49,13 @@ public class AuthController {
             }
             if (customerDTO.getPassword().equals(customerDTO.getRepeatPassword())) {
                 customerDTO.setPassword(passwordEncoder.encode(customerDTO.getPassword()));
-                CustomerDTO save = customerService.save(customerDTO);
+                customerService.save(customerDTO);
                 model.addAttribute("success", "Register successfully");
-                return "register";
             } else {
                 model.addAttribute("password", "Password is not same");
                 model.addAttribute("customerDTO", customerDTO);
-                return "register";
             }
+            return "register";
         } catch (Exception e) {
             model.addAttribute("error", "Server have ran some problems");
             model.addAttribute("customerDTO", customerDTO);

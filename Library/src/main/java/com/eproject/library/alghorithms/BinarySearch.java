@@ -1,13 +1,13 @@
 package com.eproject.library.alghorithms;
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class BinarySearch {
-    public static <T extends Comparable<T>> Integer binarySearch(ArrayList<T>
+    public static <T extends Comparable<T>> Integer binarySearch(List<T>
                                                                          array, T target){
         return binarySearch(array, target, T::compareTo);
     }
-    public static <T>Integer binarySearch(ArrayList<T> array, T target,
+    public static <T>Integer binarySearch(List<T> array, T target,
                                           Comparator<T> cmp){
         int low = 0, height = array.size() - 1;
         int middle;

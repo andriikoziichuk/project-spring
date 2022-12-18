@@ -23,10 +23,10 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
-                <form th:action="@{/search-result/0}"
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <form th:action="@{/search}"
+                      class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
-                        <input type="text" id="search" name="keyword" class="form-control bg-light border-1 small" placeholder="Пошук книг"
+                        <input type="text" id="search" name="keyword" class="form-control bg-light border-1 small" placeholder="Шукати покупців"
                                aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="submit">
@@ -35,10 +35,9 @@
                         </div>
                     </div>
                 </form>
-                <a class="mb-1 ml-2 btn btn-primary" th:href = "@{/add-product}">Додати нову книгу</a>
                 <!-- Page Heading -->
                 <div th:if = "${size == 0}" class="mt-2">
-                    <p>Немає книг</p>
+                    <p>Немає покупців</p>
                 </div>
                 <div th:if = "${success}" class="mt-2 text-center alert alert-success">
                     <p th:text = "${success}"></p>
@@ -48,29 +47,24 @@
                 </div>
                 <table class="mt-4 table table-striped" th:if = "${size > 0}">
                     <thead>
-<!--                    -->
+                    <!--                    -->
                     <tr>
-                        <th scope="col">Назва</th>
-                        <th scope="col">Категорія</th>
-                        <th scope="col">Ціна</th>
-                        <th scope="col">Кількість</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Емейл</th>
+                        <th scope="col">Ім'я</th>
+                        <th scope="col">Прізвище</th>
                         <th scope="col">Фото</th>
                         <th scope="col">Оновити</th>
-                        <th scope="col">Дії</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each = "product : ${products}">
-                        <th scope="row" th:text = "${product.name}"></th>
-                        <td th:text = "${product.category.name}"></td>
-                        <td th:text = "${product.costPrice}"></td>
-                        <td th:text = "${product.currentQuantity}"></td>
-                        <td><img src="" style="height: 40px; width: 40px;" th:src = "*{'data:image/jpeg;base64,' + {product.image}}"></td>
-                        <td><a th:href="@{/update-product/{id} (id = ${product.id})}" class="btn btn-primary">Update</a></td>
-                        <td>
-                            <a th:if = "${product.activated == false}" th:href="@{/enable-product/{id} (id = ${product.id})}" class="btn btn-warning">Увімкнути</a>
-                            <a th:if = "${product.deleted == false}" th:href = "@{/delete-product/{id} (id = ${product.id})}" class="btn btn-danger">Вимкнути</a>
-                        </td>
+                    <tr th:each = "customer : ${customers}">
+                        <th scope="row" th:text = "${customer.id}"></th>
+                        <td th:text = "${customer.username}"></td>
+                        <td th:text = "${customer.firstName}"></td>
+                        <td th:text = "${customer.lastName}"></td>
+                        <td><img src="" style="height: 40px; width: 40px;" th:src = "*{'data:image/jpeg;base64,' + {customer.image}}"></td>
+                        <td><a th:href="@{/update-customer/{id} (id = ${customer.id})}" class="btn btn-primary">Оновити</a></td>
                     </tr>
                     </tbody>
                 </table>

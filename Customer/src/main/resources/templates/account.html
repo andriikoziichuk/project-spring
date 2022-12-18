@@ -20,11 +20,6 @@
     <div th:replace="fragments::top-search">
     </div>
     <!-- End Top Search -->
-
-    <!-- Start All Title Box -->
-    <div th:replace="fragments::instagram-box">
-    </div>
-    <!-- End All Title Box -->
     <div class="mainDiv">
         <div class="cardStyle">
             <div class="text alert alert-warning" th:if = "${error}">
@@ -36,41 +31,41 @@
             <img src="" id="signupLogo"/>
             
             <h2 class="formTitle">
-              <i>Personal Information</i> 
+              <i>Персональна інформація</i>
             </h2>
 
           <div class="inputDiv">
-            <label class="inputLabel" for="firstname"> First name * </label>
+            <label class="inputLabel" for="firstname">Ім'я * </label>
             <input type="text" th:field = "*{firstName}"  id="firstname" name="firstname" readonly>
           </div>
             
           <div class="inputDiv">
-            <label class="inputLabel" for="lastname">Last name *</label>
+            <label class="inputLabel" for="lastname">Прізвище *</label>
             <input type="text" id="lastname" th:field = "*{lastName}" name="lastname" readonly>
           </div>
             
           <div class="inputDiv">
-            <label class="inputLabel" for="username">User name *</label>
+            <label class="inputLabel" for="username">Емейл *</label>
             <input type="text" id="username" th:field = "*{username}" name="username" readonly>
           </div>
 
           <div class="inputDiv">
-            <label class="inputLabel" for="phoneNumber">Phone number *</label>
+            <label class="inputLabel" for="phoneNumber">Номер телефону *</label>
             <input type="number" id="phoneNumber" th:field = "*{phoneNumber}" name="phoneNumber">
           </div>
 
           <div class="inputDiv">
-            <label class="inputLabel" for="address">Address *</label>
+            <label class="inputLabel" for="address">Адреса *</label>
             <input type="text" id="address" th:field = "*{address}" name="address">
           </div>
 
           <div class="inputDiv">
-            <label class="inputLabel" for="city">City *</label>
+            <label class="inputLabel" for="city">Місто *</label>
             <input type="text" id="city" th:field = "*{city}" name="city">
           </div>
 
           <div class="inputDiv">
-            <label class="inputLabel" for="country">Country *</label>
+            <label class="inputLabel" for="country">Країна *</label>
             <input type="text" id="country" th:field = "*{country}" name="country">
           </div>
           
@@ -83,10 +78,6 @@
         </form>
         </div>
       </div>
-    </section>
-
-    
-    <!-- End copyright  -->
 
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
